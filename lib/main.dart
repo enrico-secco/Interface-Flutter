@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'ui/pages/pages.dart';
+import 'ui/utils/utils.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Blood Pressure App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: AppColors.blue,
       ),
       home: HomePage(),
       debugShowCheckedModeBanner: false,
