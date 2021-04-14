@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
         leading: CircleAvatar(
           backgroundColor: Colors.orange,
         ),
+        leadingWidth: 95,
         actions: [
           IconButton(icon: Icon(FontAwesome5Solid.equals), onPressed: null)
         ],
@@ -71,115 +72,158 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 12, bottom: 10),
-                    child: Row(
-                      children: [
-                        Row(
+              child: Padding(
+                padding: const EdgeInsets.only(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 12, bottom: 10),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Row(
                           children: [
-                            CircleAvatar(
-                              backgroundColor: AppColors.blue,
-                              radius: 5,
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: AppColors.blue,
+                                  radius: 5,
+                                ),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Text(
+                                  'Systolic',
+                                  style: TextStyle(fontSize: 12),
+                                )
+                              ],
                             ),
                             SizedBox(
-                              width: 4,
+                              width: 12,
                             ),
-                            Text(
-                              'Systolic',
-                              style: TextStyle(fontSize: 12),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.orange,
-                              radius: 5,
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: Colors.orange,
+                                  radius: 5,
+                                ),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Text(
+                                  'Diastolic',
+                                  style: TextStyle(fontSize: 12),
+                                )
+                              ],
                             ),
                             SizedBox(
-                              width: 4,
+                              width: 12,
                             ),
-                            Text(
-                              'Diastolic',
-                              style: TextStyle(fontSize: 12),
-                            )
+                            Icon(
+                              Icons.info,
+                              size: 14,
+                              color: Colors.grey,
+                            ),
                           ],
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Icon(
-                          Icons.info,
-                          size: 14,
-                          color: Colors.grey,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8.0,
-                      horizontal: 2.0,
-                    ),
-                    child: CandleChart<CandleItem>(
-                      data: _value,
-                      dataToValue: (CandleItem value) =>
-                          CandleValue(value.min, value.max),
-                      height: MediaQuery.of(context).size.height * .275,
-                      chartBehaviour: ChartBehaviour(
-                          isScrollable: true,
-                          onItemClicked: (item) {
-                            print('fui clicado!');
-                            setState(() {
-                              _selected = item;
-                            });
-                          }),
-                      backgroundDecorations: [
-                        HorizontalAxisDecoration(
-                          showValues: true,
-                          lineWidth: .5,
-                          dashArray: [2, 4],
-                          legendFontStyle: TextStyle(
-                            color: AppColors.blue,
-                            fontSize: 10,
-                          ),
-                          legendPosition: HorizontalLegendPosition.start,
-                        ),
-                      ],
-                      foregroundDecorations: [
-                        ValueDecoration(
-                          alignment: Alignment.topCenter,
-                          textStyle: TextStyle(
-                            color: AppColors.blue,
-                            fontSize: 10,
-                          ),
-                        ),
-                      ],
-                      chartItemOptions: BarItemOptions(
-                        minBarWidth: 6.0,
-                        padding: EdgeInsets.symmetric(horizontal: 22.0),
-                        color: Theme.of(context)
-                            .colorScheme
-                            .primary
-                            .withOpacity(1.0),
-                        radius: BorderRadius.all(
-                          Radius.circular(100.0),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8.0,
+                        horizontal: 2.0,
+                      ),
+                      child: CandleChart<CandleItem>(
+                        data: _value,
+                        dataToValue: (CandleItem value) =>
+                            CandleValue(value.min, value.max),
+                        height: MediaQuery.of(context).size.height * .275,
+                        chartBehaviour: ChartBehaviour(
+                            isScrollable: true,
+                            onItemClicked: (item) {
+                              print('fui clicado!');
+                              setState(() {
+                                _selected = item;
+                              });
+                            }),
+                        backgroundDecorations: [
+                          HorizontalAxisDecoration(
+                            showValues: true,
+                            lineWidth: .5,
+                            dashArray: [2, 4],
+                            legendFontStyle: TextStyle(
+                              color: AppColors.blue,
+                              fontSize: 10,
+                            ),
+                            legendPosition: HorizontalLegendPosition.start,
+                          ),
+                        ],
+                        foregroundDecorations: [
+                          ValueDecoration(
+                            alignment: Alignment.topCenter,
+                            textStyle: TextStyle(
+                              color: AppColors.blue,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ],
+                        chartItemOptions: BarItemOptions(
+                          minBarWidth: 6.0,
+                          padding: EdgeInsets.symmetric(horizontal: 22.0),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(1.0),
+                          radius: BorderRadius.all(
+                            Radius.circular(100.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
         ),
       ),
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          IconButton(
+            icon: Icon(FontAwesome5Solid.capsules),
+            onPressed: null,
+          ),
+          IconButton(
+            icon: Icon(Icons.favorite_border),
+            onPressed: null,
+          ),
+          IconButton(
+            icon: Icon(Icons.mail_outline),
+            onPressed: null,
+          ),
+        ],
+      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       icon: Icon(FontAwesome5Solid.capsules),
+      //       label: '',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.favorite_border),
+      //       label: '',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.mail_outline),
+      //       label: '',
+      //     ),
+      //   ],
+      // ),
     );
   }
 }
