@@ -12,14 +12,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Blood Pressure App',
+      title: 'Blood Preassure App',
       theme: ThemeData(
         primarySwatch: AppColors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: LoadingPage.pageName,
       routes: {
         '/': (context) => HomePage(),
         MyTrendsPage.pageName: (context) => MyTrendsPage(),
+        SignupPage.pageName: (context) => SignupPage(),
+        HomeTestPage.pageName: (context) => HomeTestPage(),
+        LoadingPage.pageName: (context) => LoadingPage(),
       },
       debugShowCheckedModeBanner: false,
     );
